@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Search Engine</title>
+</head>
+    <body>
+        <div class="search-container">
+            <form>
+                <input type="text" id="search-input" placeholder="Search the Infosphere">
+                <button id="search-button">Search</button>
+            </form>
+        </div>
+        <div id="results"></div>
+    <script>
+        const searchInput = document.getElementById("search-input");
+        const searchButton = document.getElementById("search-button");
+        const resultsContainer = document.getElementById("results");
+
+        searchButton.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        const searchString = "starfinder aonsrd " + searchInput.value;
+        const site = "https://www.google.com/search?q=";
+
+        fetch(`${site}${searchString}`)
+            .then(response => response.text())
+            .then(data => {
+            resultsContainer.innerHTML = data;
+            });
+        });
+    </script>
+    </body>
+</html>
